@@ -54,6 +54,7 @@ public final class IafItems {
     public static final RegistrySupplier<Item> DRAGONEGG_COPPER = registerItem("dragonegg_copper", () -> new DragonEggItem(IafDragonColors.COPPER));
     public static final RegistrySupplier<Item> DRAGONEGG_BLACK = registerItem("dragonegg_black", () -> new DragonEggItem(IafDragonColors.BLACK));
     public static final RegistrySupplier<Item> DRAGONEGG_NETHER = registerItem("dragonegg_nether", () -> new DragonEggItem(IafDragonColors.NETHER));
+    public static final RegistrySupplier<Item> DRAGONEGG_CRIMSON = registerItem("dragonegg_crimson", () -> new DragonEggItem(IafDragonColors.CRIMSON));
     public static final RegistrySupplier<Item> DRAGONSCALES_RED = registerItem("dragonscales_red", () -> new DragonScalesItem(IafDragonColors.RED));
     public static final RegistrySupplier<Item> DRAGONSCALES_GREEN = registerItem("dragonscales_green", () -> new DragonScalesItem(IafDragonColors.GREEN));
     public static final RegistrySupplier<Item> DRAGONSCALES_BRONZE = registerItem("dragonscales_bronze", () -> new DragonScalesItem(IafDragonColors.BRONZE));
@@ -67,6 +68,7 @@ public final class IafItems {
     public static final RegistrySupplier<Item> DRAGONSCALES_COPPER = registerItem("dragonscales_copper", () -> new DragonScalesItem(IafDragonColors.COPPER));
     public static final RegistrySupplier<Item> DRAGONSCALES_BLACK = registerItem("dragonscales_black", () -> new DragonScalesItem(IafDragonColors.BLACK));
     public static final RegistrySupplier<Item> DRAGONSCALES_NETHER = registerItem("dragonscales_nether", () -> new DragonScalesItem(IafDragonColors.NETHER));
+    public static final RegistrySupplier<Item> DRAGONSCALES_CRIMSON = registerItem("dragonscales_crimson", () -> new DragonScalesItem(IafDragonColors.CRIMSON));
     public static final RegistrySupplier<Item> DRAGON_BONE = registerItem("dragonbone", () -> new Item(new Item.Settings()));
     public static final RegistrySupplier<Item> WITHERBONE = registerItem("witherbone", () -> new Item(new Item.Settings()));
     public static final RegistrySupplier<Item> WITHER_SHARD = registerItem("wither_shard", () -> new Item(new Item.Settings()));

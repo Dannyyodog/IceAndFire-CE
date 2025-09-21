@@ -6,6 +6,7 @@ import com.iafenvoy.iceandfire.registry.IafDragonTypes;
 import com.iafenvoy.iceandfire.render.model.armor.FireDragonScaleArmorModel;
 import com.iafenvoy.iceandfire.render.model.armor.IceDragonScaleArmorModel;
 import com.iafenvoy.iceandfire.render.model.armor.LightningDragonScaleArmorModel;
+import com.iafenvoy.iceandfire.render.model.armor.NetherDragonScaleArmorModel;
 import com.iafenvoy.uranus.client.render.armor.IArmorRendererBase;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.entity.EquipmentSlot;
@@ -21,6 +22,7 @@ public class ScaleArmorRenderer implements IArmorRendererBase<LivingEntity> {
             if (IafDragonTypes.FIRE == dragonType) return new FireDragonScaleArmorModel(inner);
             if (IafDragonTypes.ICE == dragonType) return new IceDragonScaleArmorModel(inner);
             if (IafDragonTypes.LIGHTNING == dragonType) return new LightningDragonScaleArmorModel(inner);
+            if (IafDragonTypes.NETHER == dragonType) return new NetherDragonScaleArmorModel(inner);
         }
         return null;
     }

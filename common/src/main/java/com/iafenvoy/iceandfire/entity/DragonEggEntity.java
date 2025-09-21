@@ -162,6 +162,12 @@ public class DragonEggEntity extends LivingEntity implements BlacklistedFromStat
             if (this.getWorld().isSkyVisible(this.getBlockPos().up()) && isRainingAt) {
                 this.setDragonAge(this.getDragonAge() + 1);
             }
+        } else if (dragonType == IafDragonTypes.NETHER) {
+            // Nether dragons hatch when placed on soul fire (check if the egg is on soul fire)
+            BlockState currentState = this.getWorld().getBlockState(this.getBlockPos());
+            if (currentState.isOf(Blocks.SOUL_FIRE)) {
+                this.setDragonAge(this.getDragonAge() + 1);
+            }
         }
 
         if (this.getDragonAge() > IafCommonConfig.INSTANCE.dragon.eggBornTime.getValue()) {
@@ -185,6 +191,8 @@ public class DragonEggEntity extends LivingEntity implements BlacklistedFromStat
                 this.getWorld().playSound(this.getX(), this.getY() + this.getStandingEyeHeight(), this.getZ(), SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER, this.getSoundCategory(), 2.5F, 1.0F, false);
             } else if (dragonType == IafDragonTypes.FIRE)
                 this.getWorld().playSound(this.getX(), this.getY() + this.getStandingEyeHeight(), this.getZ(), SoundEvents.BLOCK_FIRE_EXTINGUISH, this.getSoundCategory(), 2.5F, 1.0F, false);
+            else if (dragonType == IafDragonTypes.NETHER)
+                this.getWorld().playSound(this.getX(), this.getY() + this.getStandingEyeHeight(), this.getZ(), SoundEvents.BLOCK_SOUL_SAND_STEP, this.getSoundCategory(), 2.5F, 0.5F, false);
             this.getWorld().playSound(this.getX(), this.getY() + this.getStandingEyeHeight(), this.getZ(), IafSounds.EGG_HATCH.get(), this.getSoundCategory(), 2.5F, 1.0F, false);
             this.discard();
         }
@@ -212,7 +220,7 @@ public class DragonEggEntity extends LivingEntity implements BlacklistedFromStat
 
     @Override
     public boolean damage(DamageSource var1, float var2) {
-        if (var1.isIn(DamageTypeTags.IS_FIRE) && this.getEggType().getType() == IafDragonTypes.FIRE)
+        if (var1.isIn(DamageTypeTags.IS_FIRE) && (this.getEggType().getType() == IafDragonTypes.FIRE || this.getEggType().getType() == IafDragonTypes.NETHER))
             return false;
         if (!this.getWorld().isClient && !var1.isIn(DamageTypeTags.BYPASSES_INVULNERABILITY) && !this.isRemoved()) {
             this.dropItem(this.getItem().getItem(), 1);

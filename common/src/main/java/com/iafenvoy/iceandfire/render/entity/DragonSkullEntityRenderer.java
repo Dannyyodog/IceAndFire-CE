@@ -10,6 +10,7 @@ import com.iafenvoy.iceandfire.registry.IafRenderers;
 import com.iafenvoy.iceandfire.render.model.animator.FireDragonTabulaModelAnimator;
 import com.iafenvoy.iceandfire.render.model.animator.IceDragonTabulaModelAnimator;
 import com.iafenvoy.iceandfire.render.model.animator.LightningTabulaDragonAnimator;
+import com.iafenvoy.iceandfire.render.model.animator.NetherDragonTabulaModelAnimator;
 import com.iafenvoy.uranus.client.model.ITabulaModelAnimator;
 import com.iafenvoy.uranus.client.model.TabulaModel;
 import com.iafenvoy.uranus.client.model.basic.BasicModelPart;
@@ -41,6 +42,7 @@ public class DragonSkullEntityRenderer extends EntityRenderer<DragonSkullEntity>
         MODELS.put(IafDragonTypes.FIRE, Pair.of(IafRenderers.FIRE_DRAGON, new MemorizeSupplier<>(FireDragonTabulaModelAnimator::new)));
         MODELS.put(IafDragonTypes.ICE, Pair.of(IafRenderers.ICE_DRAGON, new MemorizeSupplier<>(IceDragonTabulaModelAnimator::new)));
         MODELS.put(IafDragonTypes.LIGHTNING, Pair.of(IafRenderers.LIGHTNING_DRAGON, new MemorizeSupplier<>(LightningTabulaDragonAnimator::new)));
+        MODELS.put(IafDragonTypes.NETHER, Pair.of(IafRenderers.NETHER_DRAGON, new MemorizeSupplier<>(NetherDragonTabulaModelAnimator::new)));
     }
 
     public final float[][] growth_stages;
@@ -59,6 +61,7 @@ public class DragonSkullEntityRenderer extends EntityRenderer<DragonSkullEntity>
     @Override
     public void render(DragonSkullEntity entity, float entityYaw, float partialTicks, MatrixStack matrixStackIn, VertexConsumerProvider bufferIn, int packedLightIn) {
         Pair<Identifier, MemorizeSupplier<ITabulaModelAnimator<? extends DragonBaseEntity>>> p = MODELS.get(IafRegistries.DRAGON_TYPE.get(IceAndFire.id(entity.getDragonType())));
+        if (p == null) return;
         TabulaModel<? extends DragonBaseEntity> model = TabulaModelHandlerHelper.getModel(p.getFirst());
         if (model == null) return;
         VertexConsumer consumer = bufferIn.getBuffer(RenderLayer.getEntityTranslucent(this.getTexture(entity)));

@@ -385,12 +385,12 @@ public class NetherDragonEntity extends DragonBaseEntity {
 
     @Override
     public Item getSkull() {
-        return IafItems.DRAGON_SKULL_FIRE.get();
+        return IafItems.DRAGON_SKULL_NETHER.get();
     }
 
     @Override
     public Item getBloodItem() {
-        return IafItems.FIRE_DRAGON_BLOOD.get();
+        return IafItems.NETHER_DRAGON_BLOOD.get();
     }
 
     @Override

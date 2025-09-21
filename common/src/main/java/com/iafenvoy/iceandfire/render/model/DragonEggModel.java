@@ -7,6 +7,7 @@ import com.iafenvoy.iceandfire.registry.IafDragonTypes;
 import com.iafenvoy.uranus.client.model.AdvancedEntityModel;
 import com.iafenvoy.uranus.client.model.AdvancedModelBox;
 import com.iafenvoy.uranus.client.model.basic.BasicModelPart;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.registry.tag.BlockTags;
 
@@ -58,6 +59,8 @@ public class DragonEggModel<T extends LivingEntity> extends AdvancedEntityModel<
                 isLocationValid = egg.getWorld().getBlockState(egg.getBlockPos()).isIn(BlockTags.FIRE);
             else if (egg.getEggType().getType() == IafDragonTypes.LIGHTNING)
                 isLocationValid = egg.getWorld().hasRain(egg.getBlockPos());
+            else if (egg.getEggType().getType() == IafDragonTypes.NETHER)
+                isLocationValid = egg.getWorld().getBlockState(egg.getBlockPos()).isOf(Blocks.SOUL_FIRE);
             if (isLocationValid) {
                 this.walk(this.Egg1, 0.3F, 0.3F, true, 1, 0, animationProgress, 1);
                 this.flap(this.Egg1, 0.3F, 0.3F, false, 0, 0, animationProgress, 1);

@@ -88,18 +88,34 @@ public final class DragonColor {
     }
 
     public Identifier getBodyTexture(int stage) {
+        // Nether dragons use netherdragon folder for textures
+        if (this.dragonType.name().equals("nether")) {
+            return Identifier.of(IceAndFire.MOD_ID, String.format("textures/entity/netherdragon/%s_%d.png", this.name, stage));
+        }
         return Identifier.of(IceAndFire.MOD_ID, String.format("textures/entity/%sdragon/%s_%d.png", this.dragonType.name(), this.name, stage));
     }
 
     public Identifier getSleepTexture(int stage) {
+        // Nether dragons use netherdragon folder for textures
+        if (this.dragonType.name().equals("nether")) {
+            return Identifier.of(IceAndFire.MOD_ID, String.format("textures/entity/netherdragon/%s_%d_sleeping.png", this.name, stage));
+        }
         return Identifier.of(IceAndFire.MOD_ID, String.format("textures/entity/%sdragon/%s_%d_sleeping.png", this.dragonType.name(), this.name, stage));
     }
 
     public Identifier getEyesTexture(int stage) {
+        // Nether dragons use netherdragon folder for textures
+        if (this.dragonType.name().equals("nether")) {
+            return Identifier.of(IceAndFire.MOD_ID, String.format("textures/entity/netherdragon/%s_%d_eyes.png", this.name, stage));
+        }
         return Identifier.of(IceAndFire.MOD_ID, String.format("textures/entity/%sdragon/%s_%d_eyes.png", this.dragonType.name(), this.name, stage));
     }
 
     public Identifier getSkeletonTexture(int stage) {
+        // Nether dragons use netherdragon folder for textures
+        if (this.dragonType.name().equals("nether")) {
+            return Identifier.of(IceAndFire.MOD_ID, String.format("textures/entity/netherdragon/%s_skeleton_%d.png", this.dragonType.name(), stage));
+        }
         return Identifier.of(IceAndFire.MOD_ID, String.format("textures/entity/%sdragon/%s_skeleton_%d.png", this.dragonType.name(), this.dragonType.name(), stage));
     }
 
@@ -112,6 +128,10 @@ public final class DragonColor {
     }
 
     public Identifier getEggTexture() {
+        // Nether dragons use netherdragon folder for textures
+        if (this.dragonType.name().equals("nether")) {
+            return Identifier.of(IceAndFire.MOD_ID, String.format("textures/entity/netherdragon/egg_%s.png", this.name));
+        }
         return Identifier.of(IceAndFire.MOD_ID, String.format("textures/entity/%sdragon/egg_%s.png", this.dragonType.name(), this.name));
     }
 }
