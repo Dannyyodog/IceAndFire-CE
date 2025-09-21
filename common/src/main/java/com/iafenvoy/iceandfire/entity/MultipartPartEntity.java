@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/// FIXME::Use client only entity for multi-hitbox
 public abstract class MultipartPartEntity extends Entity implements Tameable {
     private static final TrackedData<Optional<UUID>> PARENT_UUID = DataTracker.registerData(MultipartPartEntity.class, TrackedDataHandlerRegistry.OPTIONAL_UUID);
     private static final TrackedData<Float> SCALE_WIDTH = DataTracker.registerData(MultipartPartEntity.class, TrackedDataHandlerRegistry.FLOAT);
@@ -218,14 +219,6 @@ public abstract class MultipartPartEntity extends Entity implements Tameable {
     }
 
     @Override
-    public ActionResult interact(PlayerEntity player, Hand hand) {
-        Entity parent = this.getParent();
-        if (this.getWorld().isClient && this.getParentId() != null)
-            NetworkManager.sendToServer(new MultipartInteractC2SPayload(this.getParentId(), 0));
-        return parent != null ? parent.interact(player, hand) : ActionResult.PASS;
-    }
-
-    @Override
     public boolean damage(DamageSource source, float damage) {
         Entity parent = this.getParent();
         if (this.getWorld().isClient && this.getParentId() != null && source.getAttacker() instanceof PlayerEntity)
@@ -255,6 +248,10 @@ public abstract class MultipartPartEntity extends Entity implements Tameable {
 
     @Override
     public ActionResult interactAt(PlayerEntity player, Vec3d hitPos, Hand hand) {
-        return ActionResult.SUCCESS;
+        Entity parent = this.getParent();
+        if (this.getWorld().isClient && this.getParentId() != null) {
+            NetworkManager.sendToServer(new MultipartInteractC2SPayload(this.getParentId(), 0));
+            return ActionResult.SUCCESS;
+        } else return parent != null ? parent.interactAt(player, hitPos, hand) : ActionResult.PASS;
     }
 }

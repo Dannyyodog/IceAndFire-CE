@@ -266,7 +266,7 @@ public final class ServerEvents {
         }
         // Handle multipart
         if (entity instanceof MultipartPartEntity multipart) {
-            multipart.interact(player, hand);
+            //FIXME::Don't run in item class?
             // Handle some dragon items
             if (player.getStackInHand(hand).getItem() instanceof DragonHornItem horn && multipart.getParent() instanceof LivingEntity living)
                 horn.useOnEntity(player.getStackInHand(hand), player, living, hand);

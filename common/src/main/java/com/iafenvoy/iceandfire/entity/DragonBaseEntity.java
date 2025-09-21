@@ -2573,6 +2573,7 @@ public abstract class DragonBaseEntity extends TameableEntity implements Extende
         return new Vec3d(headPosX, headPosY, headPosZ);
     }
 
+    //FIXME::int syncType param?
     public abstract void stimulateFire(double burnX, double burnY, double burnZ, int syncType);
 
     public void randomizeAttacks() {
