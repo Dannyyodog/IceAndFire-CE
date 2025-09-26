@@ -3,6 +3,7 @@ package com.iafenvoy.iceandfire.registry;
 import com.iafenvoy.iceandfire.IceAndFire;
 import com.iafenvoy.iceandfire.particle.DragonFlameParticleType;
 import com.iafenvoy.iceandfire.particle.DragonFrostParticleType;
+import com.iafenvoy.iceandfire.particle.DragonSoulFlameParticleType;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.particle.ParticleType;
@@ -16,6 +17,7 @@ public final class IafParticles {
     public static final RegistrySupplier<SimpleParticleType> BLOOD = register("blood", () -> new SimpleParticleType(true));
     public static final RegistrySupplier<DragonFlameParticleType> DRAGON_FLAME = register("dragon_flame", DragonFlameParticleType::new);
     public static final RegistrySupplier<DragonFrostParticleType> DRAGON_FROST = register("dragon_frost", DragonFrostParticleType::new);
+    public static final RegistrySupplier<DragonSoulFlameParticleType> DRAGON_SOUL_FLAME = register("dragon_soul_flame", DragonSoulFlameParticleType::new);
     public static final RegistrySupplier<SimpleParticleType> DREAD_PORTAL = register("dread_portal", () -> new SimpleParticleType(true));
     public static final RegistrySupplier<SimpleParticleType> DREAD_TORCH = register("dread_torch", () -> new SimpleParticleType(true));
     public static final RegistrySupplier<SimpleParticleType> GHOST_APPEARANCE = register("ghost_appearance", () -> new SimpleParticleType(true));

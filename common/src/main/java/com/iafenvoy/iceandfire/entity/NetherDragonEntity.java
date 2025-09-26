@@ -7,6 +7,7 @@ import com.iafenvoy.iceandfire.entity.util.dragon.IafDragonAttacks;
 import com.iafenvoy.iceandfire.entity.util.dragon.IafDragonDestructionManager;
 import com.iafenvoy.iceandfire.event.IafEvents;
 import com.iafenvoy.iceandfire.particle.DragonFlameParticleType;
+import com.iafenvoy.iceandfire.particle.DragonSoulFlameParticleType;
 import com.iafenvoy.iceandfire.registry.IafDragonTypes;
 import com.iafenvoy.iceandfire.registry.IafEntities;
 import com.iafenvoy.iceandfire.registry.IafItems;
@@ -279,7 +280,7 @@ public class NetherDragonEntity extends DragonBaseEntity {
                 if (this.random.nextInt(particleCount) == 0) {
                     Vec3d velocity = new Vec3d(progressX, progressY, progressZ).subtract(headPos);
                     if (this.getWorld() instanceof ServerWorld serverWorld)
-                        serverWorld.spawnParticles(ParticleTypes.SOUL_FIRE_FLAME, headPos.x, headPos.y, headPos.z, 0, velocity.x, velocity.y, velocity.z, 1);
+                        serverWorld.spawnParticles(new DragonSoulFlameParticleType(this.getScaleFactor()), headPos.x, headPos.y, headPos.z, 0, velocity.x, velocity.y, velocity.z, 1);
                 }
             } else if (!this.getWorld().isClient) {
                 HitResult result = this.getWorld().raycast(new RaycastContext(new Vec3d(this.getX(), this.getY() + this.getStandingEyeHeight(), this.getZ()), new Vec3d(progressX, progressY, progressZ), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, this));

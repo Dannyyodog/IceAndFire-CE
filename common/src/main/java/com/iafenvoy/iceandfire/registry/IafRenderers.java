@@ -101,6 +101,7 @@ public final class IafRenderers {
         consumer.accept(new ParticleProviderHolder<>(IafParticles.BLOOD.get(), BloodParticle::factory));
         consumer.accept(new ParticleProviderHolder<>(IafParticles.DRAGON_FLAME.get(), DragonFlameParticle::factory));
         consumer.accept(new ParticleProviderHolder<>(IafParticles.DRAGON_FROST.get(), DragonFrostParticle::factory));
+        consumer.accept(new ParticleProviderHolder<>(IafParticles.DRAGON_SOUL_FLAME.get(), DragonSoulFlameParticle::factory));
         consumer.accept(new ParticleProviderHolder<>(IafParticles.DREAD_PORTAL.get(), DreadPortalParticle::factory));
         consumer.accept(new ParticleProviderHolder<>(IafParticles.DREAD_TORCH.get(), DreadTorchParticle::factory));
         consumer.accept(new ParticleProviderHolder<>(IafParticles.GHOST_APPEARANCE.get(), GhostAppearanceParticle.factory()));
