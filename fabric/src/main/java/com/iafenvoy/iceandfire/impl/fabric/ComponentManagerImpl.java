@@ -26,8 +26,4 @@ public class ComponentManagerImpl {
     public static PortalData getPortalData(PlayerEntity player) {
         return player.getAttachedOrCreate(IafAttachments.PORTAL_DATA);
     }
-
-    public static SirenData getSirenData(LivingEntity living) {
-        return living.getAttachedOrCreate(IafAttachments.SIREN_DATA);
-    }
 }

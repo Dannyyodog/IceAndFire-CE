@@ -18,12 +18,13 @@ public class DragonMaleOverlayFeatureRenderer<T extends DragonBaseEntity> extend
 
     @Override
     public void render(MatrixStack matrixStackIn, VertexConsumerProvider bufferIn, int packedLightIn, T dragon, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (dragon.isMale() && !dragon.isSkeletal())
-            this.getContextModel().render(matrixStackIn, bufferIn.getBuffer(RenderLayer.getEntityTranslucent(this.getTexture(dragon))), packedLightIn, OverlayTexture.DEFAULT_UV, -1);
+        Identifier texture = DragonColor.getById(dragon.getVariant()).getTextureProvider().getMaleOverlay();
+        if (dragon.isMale() && !dragon.isSkeletal() && texture != null)
+            this.getContextModel().render(matrixStackIn, bufferIn.getBuffer(RenderLayer.getEntityTranslucent(texture)), packedLightIn, OverlayTexture.DEFAULT_UV, -1);
     }
 
     @Override
     protected Identifier getTexture(T dragon) {
-        return DragonColor.getById(dragon.getVariant()).getMaleOverlay();
+        return null;
     }
 }

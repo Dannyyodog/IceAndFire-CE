@@ -17,7 +17,6 @@ public final class IafAttachments {
     public static final AttachmentType<FrozenData> FROZEN_DATA = AttachmentRegistry.create(Identifier.of(IceAndFire.MOD_ID, "frozen_data"), builder -> builder.initializer(FrozenData::new).persistent(FrozenData.CODEC).syncWith(FrozenData.PACKET_CODEC, AttachmentSyncPredicate.all()).copyOnDeath());
     public static final AttachmentType<MiscData> MISC_DATA = AttachmentRegistry.create(Identifier.of(IceAndFire.MOD_ID, "misc_data"), builder -> builder.initializer(MiscData::new).persistent(MiscData.CODEC).syncWith(MiscData.PACKET_CODEC, AttachmentSyncPredicate.all()).copyOnDeath());
     public static final AttachmentType<PortalData> PORTAL_DATA = AttachmentRegistry.create(Identifier.of(IceAndFire.MOD_ID, "portal_data"), builder -> builder.initializer(PortalData::new).persistent(PortalData.CODEC).syncWith(PortalData.PACKET_CODEC, AttachmentSyncPredicate.all()).copyOnDeath());
-    public static final AttachmentType<SirenData> SIREN_DATA = AttachmentRegistry.create(Identifier.of(IceAndFire.MOD_ID, "siren_data"), builder -> builder.initializer(SirenData::new).persistent(SirenData.CODEC).syncWith(SirenData.PACKET_CODEC, AttachmentSyncPredicate.all()).copyOnDeath());
 
     public static void init() {
         CommonEvents.LIVING_TICK.register(living -> {
@@ -26,7 +25,6 @@ public final class IafAttachments {
             tickAndSync(FROZEN_DATA, living);
             tickAndSync(MISC_DATA, living);
             tickAndSync(PORTAL_DATA, living);
-            tickAndSync(SIREN_DATA, living);
         });
     }
 

@@ -30,9 +30,4 @@ public class ComponentManager {
     public static PortalData getPortalData(PlayerEntity player) {
         throw new AssertionError("This method should be replaced by Architectury.");
     }
-
-    @ExpectPlatform
-    public static SirenData getSirenData(LivingEntity living) {
-        throw new AssertionError("This method should be replaced by Architectury.");
-    }
 }

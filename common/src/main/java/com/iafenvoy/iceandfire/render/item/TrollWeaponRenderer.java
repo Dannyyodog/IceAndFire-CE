@@ -11,16 +11,15 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 
 public class TrollWeaponRenderer implements DynamicItemRenderer {
-    private static final TrollWeaponModel MODEL = new TrollWeaponModel();
+    private final TrollWeaponModel model = new TrollWeaponModel();
 
     @Override
     public void render(ItemStack stack, ModelTransformationMode type, MatrixStack stackIn, VertexConsumerProvider bufferIn, int combinedLightIn, int combinedOverlayIn) {
         TrollType.ITrollWeapon weapon = TrollType.BuiltinWeapon.AXE;
-        if (stack.getItem() instanceof TrollWeaponItem trollWeapon)
-            weapon = trollWeapon.weapon;
+        if (stack.getItem() instanceof TrollWeaponItem trollWeapon) weapon = trollWeapon.weapon;
         stackIn.push();
         stackIn.translate(0.5F, -0.75F, 0.5F);
-        MODEL.render(stackIn, bufferIn.getBuffer(RenderLayer.getEntityCutout(weapon.getTexture())), combinedLightIn, combinedOverlayIn, -1);
+        this.model.render(stackIn, bufferIn.getBuffer(RenderLayer.getEntityCutout(weapon.getTexture())), combinedLightIn, combinedOverlayIn, -1);
         stackIn.pop();
     }
 }
