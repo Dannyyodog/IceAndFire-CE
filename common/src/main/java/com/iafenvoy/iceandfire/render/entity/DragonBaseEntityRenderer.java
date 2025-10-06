@@ -30,7 +30,6 @@ public class DragonBaseEntityRenderer<T extends DragonBaseEntity> extends MobEnt
 
     @Override
     public Identifier getTexture(DragonBaseEntity entity) {
-        DragonColor color = DragonColor.getById(entity.getVariant());
-        return color.getTextureByEntity(entity);
+        return DragonColor.getById(entity.getVariant()).getTextureProvider().getTextureByEntity(entity);
     }
 }

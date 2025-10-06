@@ -24,7 +24,7 @@ public class DragonForgeScreenHandler extends ScreenHandler {
     private final PropertyDelegate propertyDelegate;
 
     public DragonForgeScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf buf) {
-        this(syncId, new SimpleInventory(3), playerInventory, IafRegistries.DRAGON_TYPE.get(buf.readRegistryKey(IafRegistryKeys.DRAGON_TYPE)), new ArrayPropertyDelegate(1));
+        this(syncId, new SimpleInventory(3), playerInventory, IafRegistries.DRAGON_TYPE.get(buf.readRegistryKey(IafRegistryKeys.DRAGON_TYPE)), new ArrayPropertyDelegate(2));
     }
 
     public DragonForgeScreenHandler(int syncId, Inventory furnaceInventory, PlayerInventory playerInventory, DragonType dragonType, PropertyDelegate delegate) {
@@ -32,7 +32,7 @@ public class DragonForgeScreenHandler extends ScreenHandler {
         this.tileFurnace = furnaceInventory;
         this.world = playerInventory.player.getWorld();
         this.dragonType = dragonType;
-        checkDataCount(delegate, 1);
+        checkDataCount(delegate, 2);
         this.propertyDelegate = delegate;
         this.addProperties(this.propertyDelegate);
         this.addSlot(new Slot(furnaceInventory, 0, 68, 34));
@@ -86,8 +86,12 @@ public class DragonForgeScreenHandler extends ScreenHandler {
         return stack;
     }
 
-    public PropertyDelegate getPropertyDelegate() {
-        return this.propertyDelegate;
+    public int getCookTime() {
+        return this.propertyDelegate.get(0);
+    }
+
+    public int getMaxCookTime() {
+        return this.propertyDelegate.get(1);
     }
 
     public DragonType getDragonType() {

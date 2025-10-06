@@ -1,11 +1,11 @@
 package com.iafenvoy.iceandfire.data;
 
 import com.iafenvoy.iceandfire.IceAndFire;
-import com.iafenvoy.iceandfire.entity.DragonBaseEntity;
 import com.iafenvoy.iceandfire.item.armor.DragonScaleArmorItem;
 import com.iafenvoy.iceandfire.registry.IafArmorMaterials;
 import com.iafenvoy.iceandfire.registry.IafItems;
 import com.iafenvoy.iceandfire.registry.IafRegistries;
+import com.iafenvoy.iceandfire.render.texture.DragonTextureProvider;
 import com.iafenvoy.uranus.util.function.MemorizeSupplier;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.item.ArmorItem;
@@ -14,15 +14,16 @@ import net.minecraft.item.Item;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 
 import java.util.Locale;
+import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 public final class DragonColor {
     private final String name;
     private final Formatting color;
     private final DragonType dragonType;
+    private final DragonTextureProvider textureProvider;
     private final Supplier<Item> eggItem, scaleItem;
     //FIXME:: Remove this
     public RegistrySupplier<Item> helmet, chestplate, leggings, boots;
@@ -30,10 +31,15 @@ public final class DragonColor {
     private RegistrySupplier<ArmorMaterial> material;
 
     public DragonColor(String name, Formatting color, DragonType dragonType, Supplier<Item> eggItem, Supplier<Item> scaleItem) {
+        this(name, color, dragonType, DragonTextureProvider::new, eggItem, scaleItem);
+    }
+
+    public DragonColor(String name, Formatting color, DragonType dragonType, BiFunction<DragonType, String, DragonTextureProvider> textureProvider, Supplier<Item> eggItem, Supplier<Item> scaleItem) {
         this.name = name;
         this.color = color;
         this.dragonType = dragonType;
         this.dragonType.colors().add(this);
+        this.textureProvider = textureProvider.apply(this.dragonType, this.name);
         this.eggItem = eggItem;
         this.scaleItem = scaleItem;
     }
@@ -51,6 +57,10 @@ public final class DragonColor {
 
     public static DragonColor getById(String id) {
         return IafRegistries.DRAGON_COLOR.get(IceAndFire.id(id));
+    }
+
+    public DragonTextureProvider getTextureProvider() {
+        return this.textureProvider;
     }
 
     public Item getEggItem() {

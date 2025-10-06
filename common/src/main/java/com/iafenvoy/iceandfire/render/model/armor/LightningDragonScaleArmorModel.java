@@ -9,7 +9,7 @@ public class LightningDragonScaleArmorModel extends ArmorModelBase {
     private static final ModelPart OUTER_MODEL = getModelData(Dilation.NONE.add(OUTER_MODEL_OFFSET), 0.0F).getRoot().createPart(64, 64);
 
     public LightningDragonScaleArmorModel(boolean inner) {
-        super(getBakedModel(inner));
+        super(inner ? INNER_MODEL : OUTER_MODEL);
     }
 
     public static ModelData getModelData(Dilation deformation, float offset) {
@@ -60,7 +60,4 @@ public class LightningDragonScaleArmorModel extends ArmorModelBase {
         return modelData;
     }
 
-    public static ModelPart getBakedModel(boolean inner) {
-        return inner ? INNER_MODEL : OUTER_MODEL;
-    }
 }

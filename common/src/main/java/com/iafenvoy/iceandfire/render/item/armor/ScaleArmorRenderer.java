@@ -8,12 +8,18 @@ import com.iafenvoy.iceandfire.render.model.armor.IceDragonScaleArmorModel;
 import com.iafenvoy.iceandfire.render.model.armor.LightningDragonScaleArmorModel;
 import com.iafenvoy.iceandfire.render.model.armor.NetherDragonScaleArmorModel;
 import com.iafenvoy.uranus.client.render.armor.IArmorRendererBase;
+import it.unimi.dsi.fastutil.booleans.Boolean2ObjectFunction;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class ScaleArmorRenderer implements IArmorRendererBase<LivingEntity> {
+    private static final Map<DragonType, Boolean2ObjectFunction<BipedEntityModel<LivingEntity>>> MODEL_BY_TYPE = new LinkedHashMap<>();
+
     @Override
     public BipedEntityModel<LivingEntity> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot armorSlot, BipedEntityModel<LivingEntity> bipedEntityModel) {
         boolean inner = armorSlot == EquipmentSlot.LEGS || armorSlot == EquipmentSlot.HEAD;

@@ -57,7 +57,7 @@ public class DragonForgeBrickBlock extends BlockWithEntity implements DragonProo
             MenuRegistry.openExtendedMenu(serverPlayer, forge);
             return ActionResult.SUCCESS;
         }
-        return ActionResult.FAIL;
+        return ActionResult.PASS;
     }
 
     private DragonForgeBlockEntity getConnectedBlockEntity(World worldIn, BlockPos pos) {

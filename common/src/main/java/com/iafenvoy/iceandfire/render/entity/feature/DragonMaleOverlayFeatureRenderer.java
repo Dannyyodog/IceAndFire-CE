@@ -28,6 +28,6 @@ public class DragonMaleOverlayFeatureRenderer<T extends DragonBaseEntity> extend
 
     @Override
     protected Identifier getTexture(T dragon) {
-        return DragonColor.getById(dragon.getVariant()).getMaleOverlay();
+        return null;
     }
 }
